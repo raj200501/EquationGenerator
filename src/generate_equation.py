@@ -36,7 +36,9 @@ def main():
         'linear algebra': '../data/equations_linear_algebra.txt',
         'statistics': '../data/equations_statistics.txt',
         'geometry': '../data/equations_geometry.txt',
-        'complex numbers': '../data/equations_complex_numbers.txt'
+        'complex numbers': '../data/equations_complex_numbers.txt',
+        'number theory': '../data/equations_number_theory.txt',
+        'probability': '../data/equations_probability.txt'
     }
 
     while True:
