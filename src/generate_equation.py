@@ -34,7 +34,9 @@ def main():
         'trigonometry': '../data/equations_trigonometry.txt',
         'calculus': '../data/equations_calculus.txt',
         'linear algebra': '../data/equations_linear_algebra.txt',
-        'statistics': '../data/equations_statistics.txt'
+        'statistics': '../data/equations_statistics.txt',
+        'geometry': '../data/equations_geometry.txt',
+        'complex numbers': '../data/equations_complex_numbers.txt'
     }
 
     while True:
