@@ -21,6 +21,10 @@ EquationGenerator is a tool to generate LaTeX formatted equations based on user 
 │   │   ├── calculus.tex
 │   │   ├── linear_algebra.tex
 │   │   ├── statistics.tex
+│   │   ├── geometry.tex
+│   │   ├── complex_numbers.tex
+│   │   ├── number_theory.tex
+│   │   ├── probability.tex
 │   ├── generate_equation.py
 ├── data/
 │   ├── equations_arithmetic.txt
@@ -29,6 +33,10 @@ EquationGenerator is a tool to generate LaTeX formatted equations based on user 
 │   ├── equations_calculus.txt
 │   ├── equations_linear_algebra.txt
 │   ├── equations_statistics.txt
+│   ├── equations_geometry.txt
+│   ├── equations_complex_numbers.txt
+│   ├── equations_number_theory.txt
+│   ├── equations_probability.txt
 ├── README.md
 ```
 ## Getting Started
