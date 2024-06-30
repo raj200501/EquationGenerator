@@ -34,23 +34,30 @@ EquationGenerator is a tool to generate LaTeX formatted equations based on user 
 ## Getting Started
 ### Prerequisites
 Python 3.6+
+
 TeX distribution (e.g., TeX Live, MiKTeX)
+
 ### Installation
 Clone the repository:
 
 
 git clone https://github.com/your_username/EquationGenerator.git
+
 cd EquationGenerator
+
 ### Install dependencies:
 
 
 pip install -r requirements.txt
+
 ## Usage
 Run the equation generator script:
 
 
 python src/generate_equation.py
+
 Enter a mathematical description:
+
 Enter descriptions of mathematical equations in plain English, and the script will generate corresponding LaTeX formatted equations. For example:
 
 Input: "five plus three equals eight"
@@ -63,6 +70,6 @@ Output:
 5+3=8
 ### Compile the LaTeX document:
 
-
 cd src
+
 pdflatex main.tex
