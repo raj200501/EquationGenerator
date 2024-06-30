@@ -26,17 +26,31 @@ def generate_latex(equation):
 
 def main():
     """
-    Main function to take user input, parse it, generate LaTeX, and append to the output file.
+    Main function to take user input, parse it, generate LaTeX, and append to the appropriate output file.
     """
+    categories = {
+        'arithmetic': '../data/equations_arithmetic.txt',
+        'algebra': '../data/equations_algebra.txt',
+        'trigonometry': '../data/equations_trigonometry.txt',
+        'calculus': '../data/equations_calculus.txt',
+        'linear algebra': '../data/equations_linear_algebra.txt',
+        'statistics': '../data/equations_statistics.txt'
+    }
+
     while True:
         user_input = input("Enter a mathematical description (or 'quit' to exit): ")
         if user_input.lower() == 'quit':
             break
         
+        category = input(f"Enter the category ({', '.join(categories.keys())}): ").lower()
+        if category not in categories:
+            print("Invalid category. Please try again.")
+            continue
+        
         parsed_equation = parse_input(user_input)
         latex_equation = generate_latex(parsed_equation)
         
-        with open('../data/equations.txt', 'a') as f:
+        with open(categories[category], 'a') as f:
             f.write(latex_equation + '\n')
         
         print(f"Generated LaTeX: {latex_equation}")
