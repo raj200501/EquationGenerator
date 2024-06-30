@@ -64,8 +64,7 @@ Enter descriptions of mathematical equations in plain English, and the script wi
 
 ### Output: 5+3=8
 
-### 5+3=8
-### Compile the LaTeX document:
+Compile the LaTeX document:
 
 cd src
 
