@@ -1,0 +1,2 @@
+This file will initially be empty and will be populated by the generate_equation.py script with complex numbers equations.
+
