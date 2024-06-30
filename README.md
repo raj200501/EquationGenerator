@@ -61,12 +61,9 @@ Enter a mathematical description:
 Enter descriptions of mathematical equations in plain English, and the script will generate corresponding LaTeX formatted equations. For example:
 
 Input: "five plus three equals eight"
-Output: 
-5
-+
-3
-=
-8
+
+Output: 5+3=8
+
 5+3=8
 ### Compile the LaTeX document:
 
