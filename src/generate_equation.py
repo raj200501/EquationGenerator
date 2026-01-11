@@ -1,63 +1,42 @@
-import re
+"""Interactive equation generator (legacy entrypoint)."""
 
-def parse_input(description):
-    """
-    Parse a description of a mathematical equation and convert it to a LaTeX-friendly format.
-    """
-    description = description.lower()
-    description = description.replace("plus", "+")
-    description = description.replace("minus", "-")
-    description = description.replace("times", "*")
-    description = description.replace("divided by", "/")
-    description = description.replace("to the power of", "^")
-    description = description.replace("equals", "=")
-    description = description.replace("open parenthesis", "(")
-    description = description.replace("close parenthesis", ")")
-    
-    # Ensure there are no unsupported characters
-    description = re.sub(r'[^0-9+\-*/^().=]', ' ', description)
-    return description
+from __future__ import annotations
 
-def generate_latex(equation):
-    """
-    Wrap the parsed equation in LaTeX math delimiters.
-    """
-    return f"\\[{equation}\\]"
+from pathlib import Path
 
-def main():
-    """
-    Main function to take user input, parse it, generate LaTeX, and append to the appropriate output file.
-    """
-    categories = {
-        'arithmetic': '../data/equations_arithmetic.txt',
-        'algebra': '../data/equations_algebra.txt',
-        'trigonometry': '../data/equations_trigonometry.txt',
-        'calculus': '../data/equations_calculus.txt',
-        'linear algebra': '../data/equations_linear_algebra.txt',
-        'statistics': '../data/equations_statistics.txt',
-        'geometry': '../data/equations_geometry.txt',
-        'complex numbers': '../data/equations_complex_numbers.txt',
-        'number theory': '../data/equations_number_theory.txt',
-        'probability': '../data/equations_probability.txt'
-    }
+from equation_generator.parser import parse_description
+from equation_generator.renderer import render_latex
+from equation_generator.storage import EquationStore
 
+
+DEFAULT_BASE_DIR = Path(__file__).resolve().parent / "equations"
+
+
+def main() -> None:
+    store = EquationStore(base_dir=DEFAULT_BASE_DIR)
+    store.ensure_headers()
+
+    print("EquationGenerator interactive mode. Type 'quit' to exit.")
     while True:
-        user_input = input("Enter a mathematical description (or 'quit' to exit): ")
-        if user_input.lower() == 'quit':
+        user_input = input("Enter a mathematical description: ").strip()
+        if user_input.lower() == "quit":
             break
-        
-        category = input(f"Enter the category ({', '.join(categories.keys())}): ").lower()
-        if category not in categories:
-            print("Invalid category. Please try again.")
+
+        category = input(
+            f"Enter the category ({', '.join(store.available_categories())}): "
+        ).strip().lower()
+
+        try:
+            parse_result = parse_description(user_input)
+            latex_equation = render_latex(parse_result.equation)
+            path = store.append_equation(category, latex_equation)
+        except ValueError as exc:
+            print(str(exc))
             continue
-        
-        parsed_equation = parse_input(user_input)
-        latex_equation = generate_latex(parsed_equation)
-        
-        with open(categories[category], 'a') as f:
-            f.write(latex_equation + '\n')
-        
+
         print(f"Generated LaTeX: {latex_equation}")
+        print(f"Saved to: {path}")
+
 
 if __name__ == "__main__":
     main()
